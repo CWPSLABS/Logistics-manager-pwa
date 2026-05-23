@@ -1,8 +1,13 @@
-from app.database import SessionLocal
+import os
+from app.database import SessionLocal, engine, Base  # Imported engine and Base
 from app.models.company import Company
 from app.models.user import User, UserRole
 from app.models.rider import Rider
 from app.services.auth_service import hash_password
+
+# Force SQLAlchemy to read and build your table structures 
+# from your models before the database queries begin.
+Base.metadata.create_all(bind=engine)
 
 db = SessionLocal()
 
@@ -43,7 +48,6 @@ else:
     print("⚠️  Admin created: admin@logigh.com / admin123 — change password immediately")
 
 # ---- DEV ONLY — remove before production ----
-import os
 if os.getenv("APP_ENV") == "development":
     existing_rider = db.query(User).filter(User.email == "rider@logigh.com").first()
     if existing_rider:
