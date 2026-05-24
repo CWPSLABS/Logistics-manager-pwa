@@ -6,6 +6,7 @@ export default function Home() {
   const { token } = useAuthStore()
 
   if (token) return <Navigate to="/dashboard" replace />
+   return <Navigate to="/landing" replace />
 
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center px-4">
