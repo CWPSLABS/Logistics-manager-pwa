@@ -129,7 +129,7 @@ export default function Landing() {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-8 text-sm text-gray-600">
-            <a onClick={() => navigate('/')} className="hover:text-blue-600 transition cursor-pointer">Home</a>
+            <a onClick={() => navigate('/home')} className="hover:text-blue-600 transition cursor-pointer">Home</a>
             <a href="#features" className="hover:text-blue-600 transition">Features</a>
             <a href="#pricing" className="hover:text-blue-600 transition">Pricing</a>
             <a href="#faq" className="hover:text-blue-600 transition">FAQ</a>
@@ -171,7 +171,7 @@ export default function Landing() {
 
         {/* Mobile nav links row */}
         <div className="flex md:hidden items-center justify-center gap-5 text-xs text-gray-500 pt-2 border-t border-gray-100 mt-2">
-          <a onClick={() => navigate('/')} className="hover:text-blue-600 cursor-pointer">Home</a>
+          <a onClick={() => navigate('/home')} className="hover:text-blue-600 cursor-pointer">Home</a>
           <a href="#features" className="hover:text-blue-600">Features</a>
           <a href="#pricing" className="hover:text-blue-600">Pricing</a>
           <a href="#faq" className="hover:text-blue-600">FAQ</a>
