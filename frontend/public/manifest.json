@@ -2,7 +2,7 @@
   "name": "SmartMobility Logistics Manager",
   "short_name": "SmartMobility",
   "description": "Ghana Delivery & Logistics Management",
-  "start_url": "/",
+  "start_url": "/landing",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2563eb",
