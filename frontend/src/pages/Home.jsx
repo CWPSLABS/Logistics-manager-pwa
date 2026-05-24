@@ -45,14 +45,14 @@ export default function Home() {
         >
           📦 Track My Order
         </button>
-        {!isMobile && (
-          <button
+
+        <button
             onClick={() => navigate('/landing')}
             className="w-full text-gray-500 hover:text-gray-300 text-sm py-2 transition"
           >
-            ← Back to Landing Page
+            Learn more about SmartMobility 
           </button>
-        )}
+        
       </div>
     </div>
   )
