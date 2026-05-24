@@ -105,7 +105,7 @@ const faqs = [
   },
   {
     q: 'Is my data safe?',
-    a: 'Yes. Each company\'s data is completely isolated. We use industry-standard encryption and secure authentication.',
+    a: "Yes. Each company's data is completely isolated. We use industry-standard encryption and secure authentication.",
   },
 ]
 
@@ -116,20 +116,28 @@ export default function Landing() {
     <div id="top" className="min-h-screen bg-white">
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 px-6 py-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100 px-4 py-3">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🚚</span>
-            <span className="text-xl font-bold text-gray-900">SmartMobility</span>
+          {/* Logo */}
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => navigate('/landing')}
+          >
+            <span className="text-xl">🚚</span>
+            <span className="text-base font-bold text-gray-900">SmartMobility</span>
           </div>
-          <div className="hidden md:flex items-center gap-8 text-sm text-gray-600"> 
+
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-8 text-sm text-gray-600">
             <a onClick={() => navigate('/')} className="hover:text-blue-600 transition cursor-pointer">Home</a>
             <a href="#features" className="hover:text-blue-600 transition">Features</a>
             <a href="#pricing" className="hover:text-blue-600 transition">Pricing</a>
             <a href="#faq" className="hover:text-blue-600 transition">FAQ</a>
-          <a onClick={() => navigate('/contact')} className="hover:text-blue-600 transition cursor-pointer">Contact Us</a>
+            <a onClick={() => navigate('/contact')} className="hover:text-blue-600 transition cursor-pointer">Contact</a>
           </div>
-          <div className="flex items-center gap-3">
+
+          {/* Desktop buttons */}
+          <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => navigate('/login')}
               className="text-sm text-gray-600 hover:text-gray-900 font-medium transition"
@@ -143,21 +151,46 @@ export default function Landing() {
               Get Started Free
             </button>
           </div>
+
+          {/* Mobile buttons */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={() => navigate('/login')}
+              className="text-xs text-gray-600 font-medium px-3 py-1.5 border border-gray-300 rounded-lg"
+            >
+              Sign In
+            </button>
+            <button
+              onClick={() => navigate('/register')}
+              className="text-xs bg-blue-600 text-white font-semibold px-3 py-1.5 rounded-lg"
+            >
+              Get Started
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile nav links row */}
+        <div className="flex md:hidden items-center justify-center gap-5 text-xs text-gray-500 pt-2 border-t border-gray-100 mt-2">
+          <a onClick={() => navigate('/')} className="hover:text-blue-600 cursor-pointer">Home</a>
+          <a href="#features" className="hover:text-blue-600">Features</a>
+          <a href="#pricing" className="hover:text-blue-600">Pricing</a>
+          <a href="#faq" className="hover:text-blue-600">FAQ</a>
+          <a onClick={() => navigate('/contact')} className="hover:text-blue-600 cursor-pointer">Contact</a>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="pt-40 pb-20 px-6 bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-xs font-semibold px-4 py-2 rounded-full mb-6">
             🇬🇭 Built for Ghana's Delivery Industry
           </div>
-          <h1 className="text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
             Manage Every Delivery.<br />
             <span className="text-blue-600">From Order to Doorstep.</span>
           </h1>
-          <p className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto">
-            SmartMobility is a logistics management PWA(Progressive Web Application) built for Ghanaian delivery companies and e-commerce platforms. Track orders, manage riders, accept Mobile Money — all in one place.
+          <p className="text-lg md:text-xl text-gray-500 mb-10 max-w-2xl mx-auto">
+            SmartMobility is a logistics management PWA built for Ghanaian delivery companies and e-commerce platforms. Track orders, manage riders, accept Mobile Money — all in one place.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
@@ -363,18 +396,19 @@ export default function Landing() {
 
       {/* Footer */}
       <footer className="py-8 px-6 bg-gray-900 text-center text-gray-400 text-sm">
-        <div className="flex items-center justify-center gap-2 mb-3">
+        <div className="flex items-center justify-center gap-2 mb-4">
           <span className="text-xl">🚚</span>
           <span className="font-bold text-white">SmartMobility</span>
         </div>
-        <div className="flex items-center justify-center gap-6 mb-4 text-xs">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4 text-xs">
+          <button onClick={() => navigate('/')} className="hover:text-white transition">Home</button>
           <button onClick={() => navigate('/login')} className="hover:text-white transition">Admin Login</button>
           <button onClick={() => navigate('/rider/login')} className="hover:text-white transition">Rider Portal</button>
           <button onClick={() => navigate('/track')} className="hover:text-white transition">Track Order</button>
           <button onClick={() => navigate('/register')} className="hover:text-white transition">Get Started</button>
-          <a onClick={() => navigate('/contact')} className="hover:text-blue-600 transition cursor-pointer">Contact</a>
+          <button onClick={() => navigate('/contact')} className="hover:text-white transition">Contact Us</button>
         </div>
-        <p>© {new Date().getFullYear()} SmartMobility. Built for Ghana's delivery industry.</p>
+        <p className="text-xs">© {new Date().getFullYear()} SmartMobility. Built for Ghana's delivery industry.</p>
       </footer>
 
     </div>
