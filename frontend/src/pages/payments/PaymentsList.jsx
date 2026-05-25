@@ -29,13 +29,13 @@ export default function PaymentsList() {
   }
 
   const exportCSV = () => {
-    window.open('http://localhost:8000/api/v1/dashboard/export/cod', '_blank')
+    window.open(`${import.meta.env.VITE_API_URL}/api/v1/dashboard/export/cod`, '_blank')
   }
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Payments</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl md:text-2xl font-bold text-gray-800">Payments</h2>
         <button
           onClick={exportCSV}
           className="bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition"
@@ -62,63 +62,92 @@ export default function PaymentsList() {
 
       {loading ? (
         <div className="text-gray-500">Loading payments...</div>
-      ) : (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-          <table className="w-full text-sm min-w-[500px]">
-            <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
-              <tr>
-                <th className="px-4 py-3 text-left">Order ID</th>
-                <th className="px-4 py-3 text-left">Amount</th>
-                <th className="px-4 py-3 text-left">Method</th>
-                <th className="px-4 py-3 text-left">Status</th>
-                <th className="px-4 py-3 text-left">Settled</th>
-                <th className="px-4 py-3 text-left">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-100">
-              {payments.length === 0 && (
-                <tr>
-                  <td colSpan={6} className="px-4 py-8 text-center text-gray-400">
-                    No payments found
-                  </td>
-                </tr>
-              )}
-              {payments.map((payment) => (
-                <tr key={payment.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 text-gray-600">#{payment.order_id}</td>
-                  <td className="px-4 py-3 font-medium">GHS {payment.amount}</td>
-                  <td className="px-4 py-3 uppercase text-xs text-gray-600">
-                    {payment.method}
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[payment.status]}`}>
-                      {payment.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      payment.is_settled
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-orange-100 text-orange-600'
-                    }`}>
-                      {payment.is_settled ? 'Settled' : 'Pending'}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    {!payment.is_settled && (
-                      <button
-                        onClick={() => markSettled(payment.id)}
-                        className="text-blue-600 hover:underline text-xs"
-                      >
-                        Mark Settled
-                      </button>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      ) : payments.length === 0 ? (
+        <div className="bg-white rounded-xl border border-gray-100 p-8 text-center text-gray-400">
+          No payments found
         </div>
+      ) : (
+        <>
+          {/* Mobile card view */}
+          <div className="md:hidden space-y-3">
+            {payments.map((payment) => (
+              <div key={payment.id} className="bg-white rounded-xl border border-gray-100 p-4 shadow-sm">
+                <div className="flex items-start justify-between mb-2">
+                  <div>
+                    <p className="font-semibold text-gray-800">Order #{payment.order_id}</p>
+                    <p className="text-xs uppercase text-gray-400">{payment.method}</p>
+                  </div>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[payment.status]}`}>
+                    {payment.status}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-lg font-bold text-gray-800">GHS {payment.amount}</p>
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                    payment.is_settled ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-600'
+                  }`}>
+                    {payment.is_settled ? 'Settled' : 'Pending'}
+                  </span>
+                </div>
+                {!payment.is_settled && (
+                  <button
+                    onClick={() => markSettled(payment.id)}
+                    className="text-xs text-blue-600 hover:underline"
+                  >
+                    Mark Settled
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop table view */}
+          <div className="hidden md:block bg-white rounded-xl shadow-sm border border-gray-100 overflow-x-auto">
+            <table className="w-full text-sm min-w-[500px]">
+              <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+                <tr>
+                  <th className="px-4 py-3 text-left">Order ID</th>
+                  <th className="px-4 py-3 text-left">Amount</th>
+                  <th className="px-4 py-3 text-left">Method</th>
+                  <th className="px-4 py-3 text-left">Status</th>
+                  <th className="px-4 py-3 text-left">Settled</th>
+                  <th className="px-4 py-3 text-left">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {payments.map((payment) => (
+                  <tr key={payment.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3 text-gray-600">#{payment.order_id}</td>
+                    <td className="px-4 py-3 font-medium">GHS {payment.amount}</td>
+                    <td className="px-4 py-3 uppercase text-xs text-gray-600">{payment.method}</td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[payment.status]}`}>
+                        {payment.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        payment.is_settled ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-600'
+                      }`}>
+                        {payment.is_settled ? 'Settled' : 'Pending'}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      {!payment.is_settled && (
+                        <button
+                          onClick={() => markSettled(payment.id)}
+                          className="text-blue-600 hover:underline text-xs"
+                        >
+                          Mark Settled
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   )
