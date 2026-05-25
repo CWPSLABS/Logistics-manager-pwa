@@ -57,7 +57,7 @@ export default function OrdersList() {
         <div className="text-gray-500">Loading orders...</div>
       ) : (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm min-w-[600px]">
             <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
               <tr>
                 <th className="px-4 py-3 text-left">Tracking</th>
