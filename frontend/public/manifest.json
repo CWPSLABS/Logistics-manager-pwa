@@ -1,5 +1,5 @@
 {
-  "name": "SmartMobility Logistics Manager",
+  "name": "SmartMobility Logistics",
   "short_name": "SmartMobility",
   "description": "Ghana Delivery & Logistics Management",
   "start_url": "/",
@@ -13,6 +13,18 @@
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-512.png",
