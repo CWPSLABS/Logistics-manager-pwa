@@ -24,7 +24,7 @@ const features = [
   {
     icon: '💬',
     title: 'Customer Tracking',
-    description: 'Shareable tracking link sent via WhatsApp. Customers track their order live — no app needed.',
+    description: 'Shareable tracking link sent via WhatsApp. Customers track their order live — no app needed. Live GPS tracking coming soon on Pro plan.',
   },
   {
     icon: '💰',
@@ -101,7 +101,7 @@ const faqs = [
   },
   {
     q: 'Can customers track their orders?',
-    a: 'Yes. Every order gets a unique tracking link the rider shares via WhatsApp. Customers open it in any browser — no app install needed.',
+    a: 'Yes. Every order gets a unique tracking link the rider shares via WhatsApp. Customers open it in any browser — no app install needed. Live GPS map tracking is coming soon as a Pro plan feature.',
   },
   {
     q: 'Is my data safe?',
